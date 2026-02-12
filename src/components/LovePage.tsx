@@ -1,27 +1,32 @@
-import React, { useState, useEffect } from "react";
-import FloatingHearts from "./FloatingHearts";
-import CursorSparkles from "./CursorSparkles";
+import React, { useEffect, useState } from "react";
 import Confetti from "./Confetti";
+import CursorSparkles from "./CursorSparkles";
+import FloatingHearts from "./FloatingHearts";
 
 const LOVE_LETTER =
-  "From the moment you came into my life, everything became softer, brighter, and happier. You are my safe place, my favorite thought, and my forever Valentine 💕";
+  "Ever since you came into my life, everything feels warmer and more ramilo. Your presence turns ordinary moments into something magical. You are my peace, my favorite place to rest. Let's love more, create more memories, help each other grow and many more Janu. You are only the best thing that happened to me at KMC, I'm very very thankful to KMC and the friends who helped to know your name Binny uff my love. Love You so much Maya. Mero Jaan💕.And yes Thank You for being my valentine hehe ";
 
-const FLOATING_WORDS = ["Safe", "Always", "Chosen", "Forever", "Loved", "Yours"];
+const FLOATING_WORDS = ["Safe", "Always", "Chosen", "Forever", "Loved", "Yours", "Mine", "Us", "Together", "Heart", "Soul", "Joy", "Comfort", "Home", "Beloved", "Adored", "Cherished", "Treasure", "Bliss", "Harmony","Maya","Thessy","Binny","Don","Mero Mutu","Jaanu","Jaadu","Mero Chor","Mutu"];
 
 const QUIZ_QUESTIONS = [
   {
     question: "What do I call you the most? 💕",
-    options: ["Binny", "Babe", "Madam Ji"],
+    options: ["Thessy", "Babe", "Binika"],
     correct: 0,
   },
   {
     question: "What makes me smile instantly? 😊",
-    options: ["Your laugh", "Chocolate", "Sleep"],
+    options: ["Your laugh", "Your silence", "Gym"],
     correct: 0,
   },
   {
     question: "What's my favorite thing about us? 💖",
-    options: ["Everything", "Our late-night talks", "Our silences"],
+    options: ["Nothing", "Our romantic talks", "Our silences"],
+    correct: 0,
+  },
+    {
+    question: "Will we grow old together? 💖",
+    options: ["Yes", "No", "Maybe"],
     correct: 0,
   },
 ];
@@ -35,6 +40,38 @@ const LovePage: React.FC = () => {
   const [showFinale, setShowFinale] = useState(false);
   const [finaleExplosion, setFinaleExplosion] = useState(false);
   const [heroVisible, setHeroVisible] = useState(false);
+
+  const [showLine1, setShowLine1] = useState(false);
+  const [showLine2, setShowLine2] = useState(false);
+  const [showLine3, setShowLine3] = useState(false);
+
+useEffect(() => {
+  if (!showFinale) return;
+
+  // reset in case user revisits
+  setShowLine1(false);
+  setShowLine2(false);
+  setShowLine3(false);
+
+  const t1 = setTimeout(() => {
+    setShowLine1(true);
+  }, 300);
+
+  const t2 = setTimeout(() => {
+    setShowLine2(true);
+  }, 2300);
+
+  const t3 = setTimeout(() => {
+    setShowLine3(true);
+  }, 4300);
+
+  return () => {
+    clearTimeout(t1);
+    clearTimeout(t2);
+    clearTimeout(t3);
+  };
+}, [showFinale]);
+
 
   // Hero entrance
   useEffect(() => {
@@ -60,7 +97,7 @@ const LovePage: React.FC = () => {
 
   const handleQuizAnswer = (answerIdx: number) => {
     const correct = answerIdx === QUIZ_QUESTIONS[quizIndex].correct;
-    setQuizFeedback(correct ? "Of course you know that 😘" : "Hmm… I'll remind you later 😏");
+    setQuizFeedback(correct ? "Of course you know that 😘" : "Hmm… I'll remind you later 😏" );
 
     setTimeout(() => {
       setQuizFeedback(null);
@@ -110,10 +147,10 @@ const LovePage: React.FC = () => {
             className="font-display text-6xl md:text-8xl text-gradient-love mb-6"
             style={{ animation: heroVisible ? "wiggle 0.5s ease-in-out 0.3s" : undefined }}
           >
-            YAYYYY 💖💖💖
+            Endlessly Yours 💞💖
           </h1>
           <p className="font-body text-xl md:text-2xl text-foreground max-w-lg mx-auto leading-relaxed">
-            Binny, you just made me the happiest person ever 🥹
+            Because of you Bebo I'm the happiest and blessed person. Loving is you like a beautiful journey that I never want to end. You are my forever and always. Lots and lots of Love Mero Maya lai. Muah Janu. #bettertogether #forver #nishantbinika #binnyislove
           </p>
         </div>
 
@@ -131,7 +168,7 @@ const LovePage: React.FC = () => {
           style={{ animation: "bounce-in 0.6s ease-out" }}
         >
           <div className="absolute -top-5 left-1/2 -translate-x-1/2 text-3xl" style={{ animation: "gentle-float 3s ease-in-out infinite" }}>💌</div>
-          <h2 className="font-display text-3xl text-foreground mb-6 text-center">A little letter for you</h2>
+          <h2 className="font-display text-3xl text-foreground mb-6 text-center">A Letter For My Maya</h2>
           <p className="font-body text-base md:text-lg text-foreground leading-relaxed whitespace-pre-line">
             {typedText}
             <span
@@ -140,10 +177,16 @@ const LovePage: React.FC = () => {
             />
           </p>
         </div>
-      </section>
 
+         {/* Scroll indicator */}
+        <div className="absolute bottom-8 animate-bounce text-muted-foreground font-body text-sm">
+          scroll down 💕
+        </div>
+
+      </section>
+          
       {/* Quiz Section */}
-      {showQuiz && !quizDone && (
+      {!quizDone && (
         <section className="min-h-screen flex items-center justify-center px-4 py-16 relative z-10">
           <div
             className="bg-card/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-soft max-w-lg w-full text-center"
@@ -174,7 +217,7 @@ const LovePage: React.FC = () => {
             {quizFeedback && (
               <p
                 className="mt-6 font-body text-primary font-medium"
-                style={{ animation: "bounce-in 0.3s ease-out" }}
+                style={{ animation: "bounce-in 0.6s ease-out" }}
               >
                 {quizFeedback}
               </p>
@@ -184,42 +227,75 @@ const LovePage: React.FC = () => {
       )}
 
       {/* Finale */}
-      {showFinale && (
-        <section className="min-h-screen flex items-center justify-center px-4 py-16 relative z-10">
-          {finaleExplosion && <Confetti />}
-          <div
-            className="text-center max-w-lg"
-            style={{ animation: "bounce-in 0.8s ease-out" }}
+{      showFinale && (
+    <section className="min-h-screen flex items-center justify-center px-4 py-16 relative z-10 overflow-hidden">
+    {finaleExplosion && <Confetti />}
+
+    {/* Floating  hearts */}
+    <div className="absolute inset-0 pointer-events-none">
+      {Array.from({ length: 14 }).map((_, i) => (
+        <span
+          key={i}
+          className="absolute text-2xl"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${100 + i * 10}%`,
+            animation: `float-up ${10 + i}s linear infinite`,
+            animationDelay: `${i * 1.2}s`,
+          }}
+        >
+          {i % 5 === 0 ? "💕" : "❤️"}
+        </span>
+      ))}
+    </div>
+
+    <div
+      className="text-center max-w-lg relative"
+      style={{ animation: "bounce-in 0.8s ease-out" }}
+    >
+      {/* Orbiting hearts */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        {["💞", "💖"].map((h, i) => (
+          <span
+            key={i}
+            className="absolute text-2xl"
+            style={{
+              animation: `orbit ${6 + i * 2}s linear infinite`,
+            }}
           >
-            <h2
-              className="font-display text-5xl md:text-6xl text-gradient-love mb-6"
-              style={{ animation: "pulse-glow 3s ease-in-out infinite" }}
-            >
-              I'm so lucky to love you, Binny 💖
-            </h2>
-            <p className="font-body text-2xl text-foreground mb-4">
-              Happy Valentine's Day 🌹
-            </p>
-            <div className="mt-8 flex justify-center gap-2">
-              {["💖", "💕", "💗", "💓", "🩷", "❤️", "💞"].map((h, i) => (
-                <span
-                  key={i}
-                  className="text-3xl"
-                  style={{
-                    animation: `gentle-float ${2 + i * 0.3}s ease-in-out infinite`,
-                    animationDelay: `${i * 0.2}s`,
-                  }}
-                >
-                  {h}
-                </span>
-              ))}
-            </div>
-            <p className="font-body text-sm text-muted-foreground mt-12">
-              Forever yours 💕
-            </p>
-          </div>
-        </section>
+            {h}
+          </span>
+        ))}
+      </div>
+
+      {/* Heartbeat heading */}
+      {showLine1 && (
+        <h2
+          className="font-display text-5xl md:text-6xl text-gradient-love mb-4 relative z-10 animate-pulse"
+        >
+          So lucky to be with you, Maya 
+        </h2>
       )}
+
+      {/* Whisper line */}
+      {showLine2 && (
+      <p className="mt-16 font-display text-8xl text-primary">
+        Happy Valentine’s Day 💕
+      </p>
+      )}
+      {/* Handwritten ending */}
+      {showLine3 && (
+      <p
+        className="mt-16 font-display text-3xl text-primary"
+        style={{ animation: "write-in 2s ease forwards" }}
+      >
+        Forever Yours ♡
+      </p>
+      )}
+    </div>
+  </section>
+)}
+
     </div>
   );
 };

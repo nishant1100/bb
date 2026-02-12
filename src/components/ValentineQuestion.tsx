@@ -4,11 +4,13 @@ import Confetti from "../components/Confetti";
 
 const NO_MESSAGES = [
   "Nice try 😜",
+  "Oe Chor Ho Timi! 😆",
+  "Yes gara Yes 😏",
   "Nope 😏",
   "That's illegal 😆",
   "Not an option 💅",
   "Try again, cutie 🤭",
-  "Hehe nope 😘",
+  "Chor Chor Chor 😘",
   "You can't escape love 💖",
   "Wrong button, Binny 😏",
 ];
@@ -137,7 +139,7 @@ const ValentineQuestion: React.FC<ValentineQuestionProps> = ({ onYes }) => {
               className="px-8 py-3 rounded-full font-body font-semibold text-lg bg-primary text-primary-foreground shadow-glow hover:scale-105 active:scale-95 transition-all duration-300 disabled:opacity-50"
               style={{ animation: "pulse-glow 2s ease-in-out infinite" }}
             >
-              Yes 💕
+              Yes 🤍
             </button>
 
             <div className="relative">
